@@ -20,6 +20,7 @@ class CreateLikesTable extends Migration
             $table->timestamps();
         });
     }
+    //reply_id, user_id
 
     /**
      * Reverse the migrations.

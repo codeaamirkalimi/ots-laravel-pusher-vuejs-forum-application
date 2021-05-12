@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
     }
+    //name, slug
 
     /**
      * Reverse the migrations.

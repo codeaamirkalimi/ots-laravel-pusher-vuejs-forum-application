@@ -22,6 +22,7 @@ class CreateRepliesTable extends Migration
             $table->timestamps();
         });
     }
+    //body, question_id, user_id
 
     /**
      * Reverse the migrations.

@@ -23,7 +23,7 @@ class CreateQuestionsTable extends Migration
             $table->timestamps();
         });
     }
-
+    //title, slug, body, category_id, user_id
     /**
      * Reverse the migrations.
      *
