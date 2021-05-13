@@ -4,6 +4,7 @@ use App\Http\Controllers\api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\QuestionController;
+use App\Http\Controllers\api\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('questions', QuestionController::class);
 Route::apiResource('categories', CategoryController::class);
+Route::apiResource('/questions/{question}/replies', ReplyController::class);
