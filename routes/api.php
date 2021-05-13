@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\QuestionController;
@@ -22,3 +23,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::apiResource('photos', PhotoController::class);
 
 Route::apiResource('questions', QuestionController::class);
+Route::apiResource('categories', CategoryController::class);
