@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\QuestionController;
 use App\Http\Controllers\api\ReplyController;
 use App\Http\Controllers\api\LikeController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,17 @@ Route::apiResource('categories', CategoryController::class);
 Route::apiResource('/questions/{question}/replies', ReplyController::class);
 Route::post('/like/{reply}', [LikeController::class, 'like'])->name('like');
 Route::delete('/like/{reply}', [LikeController::class, 'unlike'])->name('unlike');
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
+
+});
