@@ -17,7 +17,7 @@ class Reply extends Model
     ];
 
     public function getPathAttribute(){
-        // return asset("api/questions/$this->question_id");
+        // return asset("api/questions/$this->question->slug");
     }
 
     public function user(){
