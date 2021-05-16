@@ -21,7 +21,7 @@ class User extends Authenticatable implements JWTSubject
      {
          return $this->getKey();
      }
- 
+
      /**
       * Return a key value array, containing any custom claims to be added to the JWT.
       *
@@ -64,5 +64,8 @@ class User extends Authenticatable implements JWTSubject
 
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
     }
 }

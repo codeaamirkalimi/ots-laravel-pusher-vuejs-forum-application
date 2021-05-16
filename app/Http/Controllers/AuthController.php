@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,14 @@ class AuthController extends Controller
      */
      public function __construct()
      {
-         $this->middleware('auth:api', ['except' => ['login']]);
+         $this->middleware('JWT', ['except' => ['login','signup']]);
      }
- 
+
+     public function signup(Request $request){
+         User::create($request->all());
+         return $this->login($request);
+     }
+
      /**
       * Get a JWT via given credentials.
       *
@@ -25,14 +31,14 @@ class AuthController extends Controller
      public function login()
      {
          $credentials = request(['email', 'password']);
- 
+
          if (! $token = auth()->attempt($credentials)) {
              return response()->json(['error' => 'Unauthorized'], 401);
          }
- 
+
          return $this->respondWithToken($token);
      }
- 
+
      /**
       * Get the authenticated User.
       *
@@ -42,7 +48,7 @@ class AuthController extends Controller
      {
          return response()->json(auth()->user());
      }
- 
+
      /**
       * Log the user out (Invalidate the token).
       *
@@ -51,10 +57,10 @@ class AuthController extends Controller
      public function logout()
      {
          auth()->logout();
- 
+
          return response()->json(['message' => 'Successfully logged out']);
      }
- 
+
      /**
       * Refresh a token.
       *
@@ -64,7 +70,7 @@ class AuthController extends Controller
      {
          return $this->respondWithToken(auth()->refresh());
      }
- 
+
      /**
       * Get the token array structure.
       *
